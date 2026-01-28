@@ -6,20 +6,21 @@
   <style>
     body {
       font-family: 'Georgia', serif;
-      background-color: #8FA88F; /* verde Wes Anderson */
-      color: #3c322f;
+      background-color: #DCEED1; /* verde pastel tendencia japonesa */
+      color: #333;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
+      overflow: hidden; /* para que el botón "No" pueda moverse sin scroll */
     }
 
     .page {
-      background-color: #A67C52; /* café suave */
+      background-color: #F9D6DA; /* rosa pastel tendencia japonesa */
       padding: 35px 25px;
       border-radius: 15px;
-      max-width: 380px;
+      max-width: 400px;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       position: relative;
@@ -34,36 +35,53 @@
 
     h2 {
       margin-bottom: 15px;
-      font-size: 22px;
-      color: #F2C6B6; /* rosa pálido para títulos */
+      font-size: 24px;
+      color: #2D4F2D; /* verde oscuro para títulos */
     }
 
     p {
       font-size: 16px;
       margin-bottom: 25px;
-      color: #fff;
+      color: #333;
     }
 
     button {
       margin: 8px;
-      padding: 10px 20px;
       border: none;
       border-radius: 18px;
       font-family: 'Georgia', serif;
-      font-size: 15px;
+      font-size: 18px;
       cursor: pointer;
       transition: transform 0.2s ease, background 0.3s ease;
     }
 
     .yes {
-      background-color: #F28C8C; /* rosa intenso */
+      background-color: #2D4F2D; /* verde oscuro */
       color: #fff;
+      padding: 15px 50px;
+      font-size: 24px; /* gigante */
     }
 
     .no {
-      background-color: #6B8F72; /* verde oscuro */
+      background-color: #F28C8C; /* rosa intenso */
       color: #fff;
-      position: relative;
+      font-size: 14px; /* pequeño */
+      padding: 6px 12px;
+      position: absolute;
+    }
+
+    img {
+      margin-top: 15px;
+      border-radius: 10px;
+      max-width: 100%;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.7s ease;
+    }
+
+    img.show {
+      opacity: 1;
+      transform: scale(1);
     }
   </style>
 </head>
@@ -78,6 +96,7 @@
 <script>
 const content = document.getElementById('content');
 
+// Función de fade
 function fadeOutAndChange(callback) {
   content.classList.add('fade-out');
   setTimeout(() => {
@@ -86,22 +105,48 @@ function fadeOutAndChange(callback) {
   }, 500);
 }
 
+// Paso 1: Pregunta rápida
 function nextStep() {
   fadeOutAndChange(function() {
     content.innerHTML =
       '<h2>Pregunta rápida</h2>' +
       '<p>¿Me reservas tu 14?</p>' +
-      '<button class="yes" onclick="yesOptions()">Sí</button>' +
-      '<button class="no" onmouseover="moveButton(this)">No</button>';
+      '<button class="yes" onclick="showJejeje()">Sí</button>' +
+      '<button class="no" onmouseover="moveNo(this)">No</button>';
   });
 }
 
-function moveButton(btn) {
-  const x = Math.random() * 120 - 60;
-  const y = Math.random() * 80 - 40;
-  btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+// Botón NO huyendo por toda la pantalla
+function moveNo(btn) {
+  const bodyRect = document.body.getBoundingClientRect();
+  const btnRect = btn.getBoundingClientRect();
+
+  const maxX = bodyRect.width - btnRect.width;
+  const maxY = bodyRect.height - btnRect.height;
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  btn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
+// Después de presionar "Sí": JEJEJE con GIF animado
+function showJejeje() {
+  fadeOutAndChange(function() {
+    content.innerHTML =
+      '<h2>JEJEJE 😏</h2>' +
+      '<img id="customGIF" src="miGif.gif" style="width:200px;">' +
+      '<br><button class="yes" onclick="yesOptions()">Continuar</button>';
+
+    // Animación de aparición suave del GIF
+    setTimeout(() => {
+      document.getElementById("customGIF").classList.add("show");
+    }, 100); // pequeño retraso para que la animación se vea
+  });
+}
+
+
+// Después de JEJEJE: opciones de Sí
 function yesOptions() {
   fadeOutAndChange(function() {
     content.innerHTML =
@@ -112,6 +157,7 @@ function yesOptions() {
   });
 }
 
+// Respuesta 1
 function response1() {
   fadeOutAndChange(function() {
     content.innerHTML =
@@ -120,6 +166,7 @@ function response1() {
   });
 }
 
+// Respuesta 2
 function response2() {
   fadeOutAndChange(function() {
     content.innerHTML =
