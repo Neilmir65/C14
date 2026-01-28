@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Una pregunta para ti</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      color: #fff;
+    }
+    .card {
+      background: rgba(0,0,0,0.2);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 350px;
+    }
+    button {
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+    .maybe {
+      background: #fff;
+      color: #ff4d6d;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="content">
+  <h2>Hey… tú 👀</h2>
+  <p>Alguien pensó en ti hoy.<br>Y quiere preguntarte algo.</p>
+  <button class="yes" onclick="showYes()">Continuar</button>
+</div>
+
+<script>
+  function showYes() {
+    document.getElementById("content").innerHTML = `
+      <h2>San Valentín 💘</h2>
+      <p>¿Te gustaría pasarlo conmigo?</p>
+      <button class="yes" onclick="accepted()">Sí, obvio</button>
+      <button class="maybe" onclick="accepted()">Sorpréndeme</button>
+    `;
+  }
+
+  function accepted() {
+    document.getElementById("content").innerHTML = `
+      <h2>Entonces es una cita 😌</h2>
+      <p>Prometo hacerlo especial.<br>Muy especial.</p>
+      <p>Nos vemos pronto ✨</p>
+    `;
+  }
+</script>
+
+</body>
+</html>
