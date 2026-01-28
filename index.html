@@ -6,8 +6,8 @@
   <style>
     body {
       font-family: 'Georgia', serif;
-      background-color: #2b2220;
-      color: #f5e8c7;
+      background-color: #8FA88F; /* verde Wes Anderson */
+      color: #3c322f;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,12 +16,12 @@
     }
 
     .page {
-      background-color: #3c322f;
-      padding: 30px 25px;
-      border-radius: 12px;
+      background-color: #A67C52; /* café suave */
+      padding: 35px 25px;
+      border-radius: 15px;
       max-width: 380px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       position: relative;
       transition: all 0.5s ease;
       opacity: 1;
@@ -33,13 +33,15 @@
     }
 
     h2 {
-      margin-bottom: 12px;
+      margin-bottom: 15px;
       font-size: 22px;
+      color: #F2C6B6; /* rosa pálido para títulos */
     }
 
     p {
       font-size: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      color: #fff;
     }
 
     button {
@@ -50,46 +52,25 @@
       font-family: 'Georgia', serif;
       font-size: 15px;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, background 0.3s ease;
     }
 
     .yes {
-      background-color: #a67c52;
+      background-color: #F28C8C; /* rosa intenso */
       color: #fff;
     }
 
     .no {
-      background-color: #d9c4a3;
-      color: #3c322f;
+      background-color: #6B8F72; /* verde oscuro */
+      color: #fff;
       position: relative;
-    }
-
-    .collage {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
-      margin-bottom: 15px;
-    }
-
-    .collage img {
-      width: 100%;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 5px;
-      filter: sepia(0.2);
     }
   </style>
 </head>
 <body>
 
 <div class="page" id="content">
-  <div class="collage">
-    <img src="https://placekitten.com/200/200">
-    <img src="https://placekitten.com/201/200">
-    <img src="https://placekitten.com/202/200">
-  </div>
-
-  <h2>Holaaaa, soy yo de nuevo  👀</h2>
+  <h2>Holaaaa, soy yo de nuevo 👀</h2>
   <p>Quiero preguntarte algo...</p>
   <button class="yes" onclick="nextStep()">Continuar</button>
 </div>
@@ -106,48 +87,44 @@ function fadeOutAndChange(callback) {
 }
 
 function nextStep() {
-  fadeOutAndChange(() => {
-    content.innerHTML = `
-      <h2>Pregunta rápida</h2>
-      <p>¿Me reservas tu 14?</p>
-      <button class="yes" onclick="yesOptions()">Sí</button>
-      <button class="no" onmouseover="moveButton(this)">No</button>
-    `;
+  fadeOutAndChange(function() {
+    content.innerHTML =
+      '<h2>Pregunta rápida</h2>' +
+      '<p>¿Me reservas tu 14?</p>' +
+      '<button class="yes" onclick="yesOptions()">Sí</button>' +
+      '<button class="no" onmouseover="moveButton(this)">No</button>';
   });
 }
 
 function moveButton(btn) {
   const x = Math.random() * 120 - 60;
   const y = Math.random() * 80 - 40;
-  btn.style.transform = \`translate(\${x}px, \${y}px)\`;
+  btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
 }
 
 function yesOptions() {
-  fadeOutAndChange(() => {
-    content.innerHTML = `
-      <h2>Genial 😏</h2>
-      <p>Elige cómo quieres responder:</p>
-      <button class="yes" onclick="response1()">Sí, ya te estabas demorando</button>
-      <button class="yes" onclick="response2()">Sí, sorpréndeme</button>
-    `;
+  fadeOutAndChange(function() {
+    content.innerHTML =
+      '<h2>Genial 😏</h2>' +
+      '<p>Elige cómo quieres responder:</p>' +
+      '<button class="yes" onclick="response1()">Sí, ya te estabas demorando</button>' +
+      '<button class="yes" onclick="response2()">Sí, sorpréndeme</button>';
   });
 }
 
 function response1() {
-  fadeOutAndChange(() => {
-    content.innerHTML = `
-      <h2>Tendré que compensarlo 😌</h2>
-      <p>Prepárate, de lo demás ya me encargo…</p>
-    `;
+  fadeOutAndChange(function() {
+    content.innerHTML =
+      '<h2>Tendré que compensarlo 😌</h2>' +
+      '<p>Prepárate, de lo demás ya me encargo…</p>';
   });
 }
 
 function response2() {
-  fadeOutAndChange(() => {
-    content.innerHTML = `
-      <h2>Para eso volví del espacio 🚀</h2>
-      <p>Ñaaaam…</p>
-    `;
+  fadeOutAndChange(function() {
+    content.innerHTML =
+      '<h2>Para eso volví del espacio 🚀</h2>' +
+      '<p>Ñaaaam…</p>';
   });
 }
 </script>
