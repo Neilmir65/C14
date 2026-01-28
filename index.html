@@ -88,7 +88,7 @@
 <body>
 
 <div class="page" id="content">
-  <h2>Holaaaa, soy yo de nuevo 👀</h2>
+  <h2>Holaaaa, Camila, soy yo de nuevo 👀</h2>
   <p>Quiero preguntarte algo...</p>
   <button class="yes" onclick="nextStep()">Continuar</button>
 </div>
@@ -135,22 +135,21 @@ function showJejeje() {
   fadeOutAndChange(function() {
     content.innerHTML =
       '<h2>JEJEJE 😏</h2>' +
-      '<img id="customGIF" src="miGif.gif" style="width:200px;">' +
+      '<img id="customGIF" src="hehehe.gif" style="width:200px;">' +
       '<br><button class="yes" onclick="yesOptions()">Continuar</button>';
 
     // Animación de aparición suave del GIF
     setTimeout(() => {
       document.getElementById("customGIF").classList.add("show");
-    }, 100); // pequeño retraso para que la animación se vea
+    }, 100);
   });
 }
-
 
 // Después de JEJEJE: opciones de Sí
 function yesOptions() {
   fadeOutAndChange(function() {
     content.innerHTML =
-      '<h2>Genial 😏</h2>' +
+      '<h2>Genial </h2>' +
       '<p>Elige cómo quieres responder:</p>' +
       '<button class="yes" onclick="response1()">Sí, ya te estabas demorando</button>' +
       '<button class="yes" onclick="response2()">Sí, sorpréndeme</button>';
